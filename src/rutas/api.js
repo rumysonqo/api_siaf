@@ -35,4 +35,16 @@ rutas.get('/api/rep_prog_fte/:fte',(req,res)=>{
 });
 
 
+rutas.get('/api/totales',(req,res)=>{
+    con.query('select sum(pia) as pia,sum(pim) as pim,sum(certificado) as certificado,sum(devengado) as devengado, sum(pim)-sum(devengado) as saldo, (sum(devengado)/sum(pim))*100 as avance from rep_siaf ',(err,rows,fields)=>{
+        if (!err) {
+            res.json(rows);
+        } else {
+            console.log(err);
+        }
+    });
+});
+
+
+
 module.exports=rutas;
