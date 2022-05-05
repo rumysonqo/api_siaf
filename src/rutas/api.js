@@ -45,6 +45,55 @@ rutas.get('/api/totales',(req,res)=>{
     });
 });
 
+rutas.get('/api/ejec_ro',(req,res)=>{
+    con.query('select sum(pia) as pia,sum(pim) as pim,sum(certificado) as certificado,sum(devengado) as devengado, sum(pim)-sum(devengado) as saldo, (sum(devengado)/sum(pim))*100 as avance from rep_siaf where cod_fuente= 1',(err,rows,fields)=>{
+        if (!err) {
+            res.json(rows);
+        } else {
+            console.log(err);
+        }
+    });
+});
+
+rutas.get('/api/ejec_dt',(req,res)=>{
+    con.query('select sum(pia) as pia,sum(pim) as pim,sum(certificado) as certificado,sum(devengado) as devengado, sum(pim)-sum(devengado) as saldo, (sum(devengado)/sum(pim))*100 as avance from rep_siaf where cod_fuente= 4',(err,rows,fields)=>{
+        if (!err) {
+            res.json(rows);
+        } else {
+            console.log(err);
+        }
+    });
+});
+
+rutas.get('/api/ejec_rdr',(req,res)=>{
+    con.query('select sum(pia) as pia,sum(pim) as pim,sum(certificado) as certificado,sum(devengado) as devengado, sum(pim)-sum(devengado) as saldo, (sum(devengado)/sum(pim))*100 as avance from rep_siaf where cod_fuente= 2',(err,rows,fields)=>{
+        if (!err) {
+            res.json(rows);
+        } else {
+            console.log(err);
+        }
+    });
+});
+
+rutas.get('/api/ejec_det',(req,res)=>{
+    con.query('select sum(pia) as pia,sum(pim) as pim,sum(certificado) as certificado,sum(devengado) as devengado, sum(pim)-sum(devengado) as saldo, (sum(devengado)/sum(pim))*100 as avance from rep_siaf where cod_fuente= 5',(err,rows,fields)=>{
+        if (!err) {
+            res.json(rows);
+        } else {
+            console.log(err);
+        }
+    });
+});
+
+rutas.get('/api/ejec_crd',(req,res)=>{
+    con.query('select sum(pia) as pia,sum(pim) as pim,sum(certificado) as certificado,sum(devengado) as devengado, sum(pim)-sum(devengado) as saldo, (sum(devengado)/sum(pim))*100 as avance from rep_siaf where cod_fuente= 3',(err,rows,fields)=>{
+        if (!err) {
+            res.json(rows);
+        } else {
+            console.log(err);
+        }
+    });
+});
 
 
 module.exports=rutas;
